@@ -217,3 +217,13 @@ img{max-width:100%}
   .tool-list{gap:7px}
   .tool-item{gap:6px;padding:8px 9px}
 }
+
+
+/* Keep the visible brand reliable: use the working official icon with a text wordmark. */
+.brand-logo{width:40px!important;height:40px!important;max-width:40px!important;max-height:40px!important;object-fit:contain;flex:0 0 40px}
+.brand-footer .brand-logo{width:40px!important;height:40px!important;max-width:40px!important;max-height:40px!important}
+.brand-word{display:block;font-family:var(--display, sans-serif);font-size:21px;font-weight:800;line-height:1;letter-spacing:-1px;color:var(--ink, #191919)}
+.brand-word small{display:block;font-family:var(--body, sans-serif);font-size:8px;font-weight:700;letter-spacing:2px;margin-top:5px;color:var(--muted, #6c6a67)}
+.brand-footer .brand-word{color:#fff}
+.brand-footer .brand-word small{color:#d0ccc5}
+@media(max-width:680px){.brand-logo,.brand-footer .brand-logo{width:36px!important;height:36px!important;max-width:36px!important;max-height:36px!important;flex-basis:36px}.brand-word{font-size:19px}}
