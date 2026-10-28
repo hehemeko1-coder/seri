@@ -2,6 +2,13 @@
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#primary-nav');
 
+  const closeMenu = () => {
+    if (!toggle || !nav) return;
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation');
+  };
+
   if (toggle && nav) {
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -11,13 +18,31 @@
     });
 
     nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open navigation');
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (toggle.getAttribute('aria-expanded') === 'true' &&
+          !nav.contains(event.target) && !toggle.contains(event.target)) {
+        closeMenu();
+      }
     });
   }
+
+  // If the source website blocks its hosted logo, retain a deliberate brand lockup.
+  document.querySelectorAll('.brand-logo').forEach((logo) => {
+    logo.addEventListener('error', () => {
+      const fallback = document.createElement('span');
+      fallback.className = 'brand-fallback';
+      fallback.setAttribute('aria-label', 'SERI Skill Center');
+      fallback.innerHTML = '<strong>SERI</strong><small>SKILL CENTER</small>';
+      logo.replaceWith(fallback);
+    }, { once: true });
+  });
 
   const year = document.querySelector('#year');
   if (year) year.textContent = new Date().getFullYear();
@@ -27,7 +52,8 @@
   if (form && status) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      status.textContent = 'Thanks for your interest. This is only a preview, so your details have not been sent or saved yet.';
+      status.textContent = 'Thanks for your interest. This is a preview only; your details have not been sent or saved.';
+      status.classList.add('is-shown');
     });
   }
 
@@ -42,7 +68,7 @@
           currentObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
     revealTargets.forEach((item) => observer.observe(item));
   }
 })();
