@@ -33,8 +33,24 @@
     });
   }
 
+  // Keep form handling honest: this static site has no configured lead API yet.
+  // Never silently swallow a submission or imply that personal data was sent.
   const form = document.querySelector('#guide-form');
-  if (form) form.addEventListener('submit', (event) => event.preventDefault());
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      let status = form.querySelector('.form-status');
+      if (!status) {
+        status = document.createElement('p');
+        status.className = 'form-status';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        form.append(status);
+      }
+      status.textContent = 'The online request form is not connected yet. Please contact SERI through the official website to request the course guide.';
+      status.classList.add('is-shown');
+    });
+  }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.course-card, .step, .story-note, .guide-form, .faq-list details');
