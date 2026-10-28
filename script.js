@@ -33,30 +33,6 @@
     });
   }
 
-  // If the source website blocks its hosted logo, retain a deliberate brand lockup.
-  document.querySelectorAll('.brand-logo').forEach((logo) => {
-    logo.addEventListener('error', () => {
-      const fallback = document.createElement('span');
-      fallback.className = 'brand-fallback';
-      fallback.setAttribute('aria-label', 'SERI Skill Center');
-      fallback.innerHTML = '<strong>SERI</strong><small>SKILL CENTER</small>';
-      logo.replaceWith(fallback);
-    }, { once: true });
-  });
-
-  const year = document.querySelector('#year');
-  if (year) year.textContent = new Date().getFullYear();
-
-  const form = document.querySelector('#guide-form');
-  const status = document.querySelector('#form-status');
-  if (form && status) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      status.textContent = 'Thanks for your interest. This is a preview only; your details have not been sent or saved.';
-      status.classList.add('is-shown');
-    });
-  }
-
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.course-card, .step, .story-note, .guide-form, .faq-list details');
   if (!reduceMotion && 'IntersectionObserver' in window) {
