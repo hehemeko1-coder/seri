@@ -33,6 +33,9 @@
     });
   }
 
+  const form = document.querySelector('#guide-form');
+  if (form) form.addEventListener('submit', (event) => event.preventDefault());
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.course-card, .step, .story-note, .guide-form, .faq-list details');
   if (!reduceMotion && 'IntersectionObserver' in window) {
