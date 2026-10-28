@@ -188,3 +188,12 @@ h2{font-size:clamp(44px,5.2vw,70px);letter-spacing:-.055em;line-height:1.02}
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
  .reveal{opacity:1;transform:none}
 }
+
+/* Resilient brand lockup and polished form feedback */
+.brand-fallback{display:flex;flex-direction:column;justify-content:center;line-height:1;color:var(--ser-orange);font-family:Georgia,"Times New Roman",serif;min-width:145px}
+.brand-fallback strong{font-size:31px;letter-spacing:-2px;font-weight:800}
+.brand-fallback small{font:700 8px/1.4 Arial,Helvetica,sans-serif;letter-spacing:2.2px;color:var(--ser-ink);margin-top:4px}
+.brand-footer .brand-fallback small{color:#f7f0e7}
+.form-status.is-shown{padding:12px 14px;border-left:3px solid var(--ser-orange);background:#fffaf3;color:var(--ser-ink)}
+.skip-link{z-index:1001;background:var(--ser-ink);color:#fff}
+@media(max-width:680px){.brand-fallback strong{font-size:27px}.brand-fallback small{font-size:7px}}
