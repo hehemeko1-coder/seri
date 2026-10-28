@@ -27,7 +27,7 @@
   if (form && status) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      status.textContent = 'This form is a front-end preview only. No information was sent or stored. Connect a secure admissions endpoint to enable requests.';
+      status.textContent = 'Thanks for your interest. This is only a preview, so your details have not been sent or saved yet.';
     });
   }
 
